@@ -2,3 +2,7 @@
 !README.md
 !photo.png
 !.gitignore
+!header/
+!header/draw.mjs
+!header/light.svg
+!header/dark.svg
