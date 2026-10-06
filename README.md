@@ -1,21 +1,18 @@
-<img src="photo.png" width="140" align="left" alt="Amber Burch" />
-
 ### Amber Burch
 
-Builder, designer and systems thinker. I work across design, AI and operations.
+**AI Systems Architect.** I design and build AI systems and immersive creative tech for brands and businesses.
 
-<br clear="left" />
+- I work out what is worth automating, then design, build and run it: automations, agents, internal tools and apps.
+- As COO and Head of AI at Corient, I run a founder-led advisory on the lead pipeline, booking and CRM routing, and delivery agents I designed and built.
+- I build by directing AI coding agents, so one person can take a system from idea to running.
 
-I build the agents and tooling that let a small team ship studio-grade work: websites, funnels, automations, AI systems. Most of it runs inside Claude Code. The pieces that travel well end up here.
+**Selected work**
 
-**Now**
-
-- [flowsmith](https://github.com/amberlburch/flowsmith): an autonomous Webflow developer for Claude Code. It builds to a written definition of done and verifies every change on the published page, never the API response
-- Miru, a permanent cultural listening space, opening November 2027
+- [flowsmith](https://github.com/amberlburch/flowsmith): an autonomous Webflow developer for Claude Code. It builds a site to a written definition of done and checks every change on the published page.
+- [listening-light](https://github.com/amberlburch/listening-light): the listening layer behind åtrå's audio-reactive light works.
 
 **Elsewhere**
 
-- Recording and DJ work as Åtrå
-- [amberburch.com](https://amberburch.com)
+Sound and light as [åtrå](https://www.instagram.com/atra.wav/). Western Australia.
 
-Yallingup, Western Australia. AWST (UTC+8).
+[amber@amberburch.com](mailto:amber@amberburch.com) · [Website]([SITE_URL])
