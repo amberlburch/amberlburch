@@ -1,6 +1,6 @@
 ### Amber Burch
 
-**AI Systems Architect. I build AI systems, websites and immersive creative tech for brands and businesses.
+**AI Systems Architect. I build AI systems, websites and immersive creative tech for brands and businesses.**
 
 - I find what's worth automating, then design, build and run it: automations, agents, internal tools, apps and sites.
 - A founder-led advisory runs on systems I built end to end: its lead pipeline, booking and CRM routing, and the agents behind its delivery.
