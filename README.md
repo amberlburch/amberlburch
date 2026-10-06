@@ -12,6 +12,6 @@
 
 **Elsewhere**
 
-Sound and light as [åtrå](https://www.instagram.com/atra.wav/): five founding light works, made live in code, are on the website. Western Australia.
+Sound and light as [åtrå](https://www.instagram.com/atra.wav/): five founding light works, made live in code, are on the website. Based in Australia.
 
 [amber@amberburch.com](mailto:amber@amberburch.com) · [Website]([SITE_URL])
