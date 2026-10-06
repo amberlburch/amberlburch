@@ -9,10 +9,9 @@
 **Selected work**
 
 - [flowsmith](https://github.com/amberlburch/flowsmith): an autonomous Webflow developer for Claude Code. It builds a site to a written definition of done and checks every change on the published page.
-- [listening-light](https://github.com/amberlburch/listening-light): the listening layer behind åtrå's audio-reactive light works.
 
 **Elsewhere**
 
-Sound and light as [åtrå](https://www.instagram.com/atra.wav/). Western Australia.
+Sound and light as [åtrå](https://www.instagram.com/atra.wav/): five founding light works, made live in code, are on the website. Western Australia.
 
 [amber@amberburch.com](mailto:amber@amberburch.com) · [Website]([SITE_URL])
