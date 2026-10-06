@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="header/dark.svg">
+  <img src="header/light.svg" width="100%" alt="A single hand-drawn line falls from a small dot and draws itself across the page.">
+</picture>
+
 ### Amber Burch
 
 **AI Systems Architect. I build AI systems, websites and immersive creative tech for brands and businesses.**
@@ -12,6 +17,6 @@
 
 **Elsewhere**
 
-Sound and light as [åtrå](https://www.instagram.com/atra.wav/): five founding light works, made live in code, are on the website. Based in Australia.
+Sound and light as [åtrå](https://www.instagram.com/atra.wav/): five founding light works, made live in code, are on the website. The line above is drawn by [a small script](header/draw.mjs) in this repo. Based in Australia.
 
 [amber@amberburch.com](mailto:amber@amberburch.com) · [amberburch.com](https://amberburch.com)
