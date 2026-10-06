@@ -3,7 +3,7 @@
 **AI Systems Architect.** I design and build AI systems and immersive creative tech for brands and businesses.
 
 - I work out what is worth automating, then design, build and run it: automations, agents, internal tools and apps.
-- As COO and Head of AI at Corient, I run a founder-led advisory on the lead pipeline, booking and CRM routing, and delivery agents I designed and built.
+- I run a founder-led advisory on systems I designed and built: the lead pipeline, booking and CRM routing, and the agents behind delivery.
 - I build by directing AI coding agents, so one person can take a system from idea to running.
 
 **Selected work**
