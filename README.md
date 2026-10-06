@@ -19,4 +19,4 @@
 
 Sound and light as [åtrå](https://www.instagram.com/atra.wav/): five founding light works, made live in code, are on the website. The line above is drawn by [a small script](header/draw.mjs) in this repo. Based in Australia.
 
-[amber@amberburch.com](mailto:amber@amberburch.com) · [amberburch.com](https://amberburch.com)
+[amber@amberburch.com](mailto:amber@amberburch.com) · [amberburch.com](https://amberburch.com) · [LinkedIn](https://www.linkedin.com/in/amber-burch)
