@@ -1,5 +1,7 @@
-// Draws the profile header: one grainy line that falls from a small dot and wanders across the page,
+// Draws the profile header: one line that falls from a small dot and wanders across the page,
 // the same hand as amberburch.com. Pencil for light GitHub, warm amber light for dark.
+// Each loop starts finished: it rests, retracts along itself, then draws back in from the dot.
+// It never fades, and its first frame is the whole drawing, so a paused or cached frame still reads.
 // Run: node header/draw.mjs   (writes header/light.svg and header/dark.svg)
 import { writeFileSync } from 'node:fs'
 
@@ -40,35 +42,52 @@ for (let i = 0; i < pts.length - 1; i++) {
   path += ` C${f(c1[0])} ${f(c1[1])} ${f(c2[0])} ${f(c2[1])} ${f(p2[0])} ${f(p2[1])}`
 }
 
+// Measure the curve, so the dash can draw it in real units (path-length tricks fail inside an <img>).
+// The resting state is the finished drawing: anywhere animation does not run, the whole line still shows.
+let L = 0
+{
+  let prev = pts[0]
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6]
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6]
+    for (let k = 1; k <= 12; k++) {
+      const t = k / 12, u = 1 - t
+      const x = u * u * u * p1[0] + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t * t * t * p2[0]
+      const y = u * u * u * p1[1] + 3 * u * u * t * c1[1] + 3 * u * t * t * c2[1] + t * t * t * p2[1]
+      L += Math.hypot(x - prev[0], y - prev[1]); prev = [x, y]
+    }
+  }
+  L = Math.ceil(L + 4)
+}
+
 const svg = ({ ink, glow }) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="A single hand-drawn line falls from a small dot and draws itself across the page.">
 <defs>
   <filter id="graphite" x="-2%" y="-12%" width="104%" height="124%">
     <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="rough"/>
-    <feDisplacementMap in="SourceGraphic" in2="rough" scale="2.4" xChannelSelector="R" yChannelSelector="G" result="line"/>
-    <feTurbulence type="fractalNoise" baseFrequency="1.7" numOctaves="1" seed="3" result="grain"/>
-    <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.6 0 0 0 -0.75" result="speckle"/>
-    <feComposite in="line" in2="speckle" operator="in" result="pencil"/>${glow ? `
-    <feGaussianBlur in="pencil" stdDeviation="3.2" result="halo"/>
+    <feDisplacementMap in="SourceGraphic" in2="rough" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="line"/>
+    <feComponentTransfer in="line" result="pencil"><feFuncA type="linear" slope="1"/></feComponentTransfer>${glow ? `
+    <feGaussianBlur in="pencil" stdDeviation="4" result="halo"/>
     <feMerge><feMergeNode in="halo"/><feMergeNode in="pencil"/><feMergeNode in="pencil"/></feMerge>` : ''}
   </filter>
 </defs>
 <style>
-  .line { fill: none; stroke: ${ink}; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
-          stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 16s cubic-bezier(.45,.1,.35,1) infinite; }
-  .echo { opacity: .22; stroke-width: 1.4; animation-delay: .5s; }
+  .line { fill: none; stroke: ${ink}; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round;
+          stroke-dasharray: ${L}; stroke-dashoffset: 0; animation: draw 16s cubic-bezier(.45,.1,.35,1) infinite; }
+  .echo { opacity: .2; stroke-width: 2; animation-delay: -.5s; }
   .dot { fill: ${ink}; transform-origin: 64px 66px; animation: breathe 16s ease-in-out infinite; }
-  @keyframes draw { 0% { stroke-dashoffset: 1; opacity: 1 } 62% { stroke-dashoffset: 0; opacity: 1 } 88% { stroke-dashoffset: 0; opacity: 1 } 97% { stroke-dashoffset: 0; opacity: 0 } 100% { stroke-dashoffset: 1; opacity: 0 } }
+  @keyframes draw { 0% { stroke-dashoffset: 0 } 22% { stroke-dashoffset: 0 } 46% { stroke-dashoffset: -${L} } 46.01% { stroke-dashoffset: ${L} } 100% { stroke-dashoffset: 0 } }
   @keyframes breathe { 0%, 100% { transform: scale(1); opacity: .9 } 4% { transform: scale(1.5); opacity: 1 } 10% { transform: scale(1); opacity: .9 } }
-  @media (prefers-reduced-motion: reduce) { .line { animation: none; stroke-dashoffset: 0 } .dot { animation: none } }
+  @media (prefers-reduced-motion: reduce) { .line, .dot { animation: none } }
 </style>
 <g filter="url(#graphite)">
-  <path class="line echo" pathLength="1" d="${path}"/>
-  <path class="line" pathLength="1" d="${path}"/>
+  <path class="line echo" d="${path}"/>
+  <path class="line" d="${path}"/>
 </g>
-<circle class="dot" cx="64" cy="66" r="3.4"/>
+<circle class="dot" cx="64" cy="66" r="4.4"/>
 </svg>
 `
 
 writeFileSync(new URL('./light.svg', import.meta.url), svg({ ink: '#1d1c1a', glow: false }))
 writeFileSync(new URL('./dark.svg', import.meta.url), svg({ ink: '#f0b45a', glow: true }))
-console.log(`drew ${pts.length} points into header/light.svg and header/dark.svg`)
+console.log(`drew ${pts.length} points (${L} units long) into header/light.svg and header/dark.svg`)
